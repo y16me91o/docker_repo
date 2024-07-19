@@ -6,19 +6,19 @@ networks:
 services:
   # docker run -d --name mongodb --network=roboshop mongodb:1
   mongodb:
-    image: mongodb:01v
     container_name: mongodb
+    image: mongodb:01v
 
-  catalogue:
-    image: catalogue:01v
-    container_name: catalogue
+  catalouge:
+    image: catalouge:01v
     depends_on:
     - mongodb
-
+    container_name: catalouge
+    
   web:
-    image: web:01v
-    container_name: web
     ports:
     - "80:80"
+    image: web:01v
+    container_name: web
     depends_on:
-    - catalogue
+    - catalouge
