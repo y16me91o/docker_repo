@@ -5,8 +5,9 @@ networks:
 
 services:
   mongodb:
-    container_name: mongodb
     image: mongodb:01v
+    container_name: mongodb
+    
 
   catalouge:
     container_name: catalouge
