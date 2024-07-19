@@ -8,11 +8,14 @@ services:
   mongodb:
     image: mongodb:01v
     container_name: mongodb
-
+    # networks:
+    # - roboshop
 
   catalogue:
     image: catalogue:01v
     container_name: catalogue
+    # networks:
+    # - roboshop
     depends_on:
     - mongodb
 
@@ -23,3 +26,5 @@ services:
     - "80:80"
     depends_on:
     - catalogue
+
+
