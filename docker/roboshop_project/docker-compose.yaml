@@ -10,15 +10,15 @@ services:
     image: mongodb:01v
 
   catalouge:
+    container_name: catalouge
     image: catalouge:01v
     depends_on:
     - mongodb
-    container_name: catalouge
     
   web:
     ports:
     - "80:80"
-    image: web:01v
     container_name: web
+    image: web:01v
     depends_on:
     - catalouge
