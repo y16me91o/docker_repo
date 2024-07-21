@@ -22,3 +22,52 @@ services:
     image: web:01v
     depends_on:
     - catalouge
+    - user
+    - cart
+    - shipping
+    - payment
+
+  redis:
+    container_name: redis
+    image: redis
+
+  user:
+    container_name: user
+    image: user:01v
+    depends_on:
+    - redis
+    - mongodb
+    
+  cart:
+    container_name: cart
+    image: cart:01v
+    depends_on:
+    - redis
+    - catalogue
+
+  mysql:
+    container_name: mysql
+    image: mysql:01v
+
+  shipping:
+    container_name: shipping
+    image: shipping:01v
+    depends_on:
+    - mysql
+
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq
+    environment:
+    - RABBITMQ_DEFAULT_USER=roboshop
+    - RABBITMQ_DEFAULT_PASS=roboshop123
+
+  payment:
+    container_name: payment
+    image: payment:01v
+    depends_on:
+    - rabbitmq
+    - user
+    - cart
+ 
+    
